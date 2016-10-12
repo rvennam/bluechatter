@@ -24,7 +24,7 @@ hello-world-repo:
 hello-world-build:
   service_id: pipeline
   parameters:
-    name: "hello-world-{{name}}"
+    name: "{{name}}-pipeline"
     ui-pipeline: true
     configuration:
      content: $file(pipeline.yml)
