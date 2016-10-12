@@ -15,7 +15,7 @@ required:
 hello-world-repo:
   service_id: githubpublic
   parameters:
-    repo_name: "hello-containers-{{name}}"
+    repo_name: "{{name}}"
     repo_url: https://github.com/rvennam/bluechatter
     type: clone
     has_issues: true
