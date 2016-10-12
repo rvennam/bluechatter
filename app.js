@@ -46,6 +46,8 @@ if(!redisService || redisService == null) {
   }
   credentials = redisService.credentials;
 }
+console.log("process.env.redis_password: " + process.env.redis_password);
+credentials = {"hostname":"pub-redis-12733.dal-05.1.sl.garantiadata.com", "port":12733, "password":process.env.redis_password};
 
 // We need 2 Redis clients one to listen for events, one to publish events
 var subscriber = redis.createClient(credentials.port, credentials.hostname);
