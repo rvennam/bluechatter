@@ -9,22 +9,22 @@ version: 0.1
 image: data:image/png;base64,$file(simple-toolchain-cont.png,base64)
 required: 
  - deploy
- - hello-world-repo
+ - bluechatter-repo
 
 # Github repos
-hello-world-repo:
+bluechatter-repo:
   service_id: githubpublic
   parameters:
-    repo_name: "hello-containers-{{name}}"
-    repo_url: https://github.com/open-toolchain/hello-containers
+    repo_name: "bluechatter-{{name}}"
+    repo_url: https://github.com/rvennam/bluechatter
     type: clone
     has_issues: true
 
 # Pipelines
-hello-world-build:
+bluechatter-build:
   service_id: pipeline
   parameters:
-    name: "hello-world-{{name}}"
+    name: "bluechatter-{{name}}"
     ui-pipeline: true
     configuration: 
      content: $file(pipeline.yml)
@@ -52,4 +52,4 @@ deploy:
     prod-region: "{{region}}"
     prod-organization: "{{organization}}"
     prod-space: "{{space}}"
-    hello-world-name: "{{hello-world-repo.parameters.repo_name}}"
+    bluechatter-name: "{{bluechatter-repo.parameters.repo_name}}"
