@@ -1,32 +1,32 @@
 ---
 default_locale: en
-locales: 
+locales:
   $ref: locales.yml
 name: "Secure container toolchain"
 description: "With this toolchain, you can develop and deploy a secure Docker container application. By default, the toolchain uses a sample Node.js Hello World app, but you can link to your own GitHub repository instead. This toolchain is preconfigured for continuous delivery with Vulnerability Advisor, source control, issue tracking, and online editing.\n\n **First-time containers service users**: Make sure that your containers service is correctly set up by [identifying the image repository for your organization](https://new-console.ng.bluemix.net/docs/containers/container_creating_ov.html#container_namespace). Also, check your org container quotas by clicking **Manage Organizations**, selecting your org, and clicking **Edit Org > Quota > Containers > Edit**. For more information about getting started with IBM Containers, see [this tutorial](https://new-console.ng.bluemix.net/docs/containers/container_gettingstarted_tutorial_lesson1.html#container_gettingstarted_tutorial_lesson_1).\n\nTo get started, click **Create**."
 version: 0.1
 # Generate base64 representation of image at http://www.askapache.com/online-tools/base64-image-converter/
 image: data:image/png;base64,$file(simple-toolchain-cont.png,base64)
-required: 
+required:
  - deploy
- - bluechatter-repo
+ - hello-world-repo
 
 # Github repos
-bluechatter-repo:
+hello-world-repo:
   service_id: githubpublic
   parameters:
-    repo_name: "bluechatter-{{name}}"
+    repo_name: "hello-containers-{{name}}"
     repo_url: https://github.com/rvennam/bluechatter
     type: clone
     has_issues: true
 
 # Pipelines
-bluechatter-build:
+hello-world-build:
   service_id: pipeline
   parameters:
-    name: "bluechatter-{{name}}"
+    name: "hello-world-{{name}}"
     ui-pipeline: true
-    configuration: 
+    configuration:
      content: $file(pipeline.yml)
      env:
       HELLO_WORLD_REPO: "hello-world-repo"
@@ -37,12 +37,12 @@ bluechatter-build:
      execute: true
     services: ["hello-world-repo"]
   hidden: [form, description]
-    
+
 
 #Web IDE
 webide:
   service_id: orion
-  
+
 #Deployment
 deploy:
   schema:
@@ -52,4 +52,4 @@ deploy:
     prod-region: "{{region}}"
     prod-organization: "{{organization}}"
     prod-space: "{{space}}"
-    bluechatter-name: "{{bluechatter-repo.parameters.repo_name}}"
+    hello-world-name: "{{hello-world-repo.parameters.repo_name}}"
