@@ -21,12 +21,15 @@
                   "title": "$region"
                 },
                 {
+                  "type": "label",
                   "title": "$organization"
                 },
                 {
+                  "type": "label",
                   "title": "$space"
                 },
                 {
+                  "type": "label",
                   "title": "$prodStage"
                 },
                 {
