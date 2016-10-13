@@ -115,6 +115,7 @@ stages:
     PORT: '80'
     CONTAINER_NAME: ${CF_APP_NAME}
     DEPLOY_TYPE: red_black
+    OPTIONAL_ARGS: --auto --anti --env redis_password=PASSWORD
     COMMAND: |
       #!/bin/bash
       # The following are some example deployment scripts.  Use these as is or fork them and include your updates here:
